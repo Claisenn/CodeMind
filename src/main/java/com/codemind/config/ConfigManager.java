@@ -75,7 +75,4 @@ public class ConfigManager {
         return properties.getProperty(key, defaultValue);
     }
 
-    public void setProperty(String key, String value) {
-        properties.setProperty(key, value);
-    }
 }
