@@ -1,5 +1,7 @@
 package com.codemind.config;
 
+import com.codemind.cli.output.ConsolePrinter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -49,12 +51,31 @@ public class ConfigManager {
         validateRequiredConfig();
     }
 
-    private void validateRequiredConfig() {
-
-    }
-
     private void createDefaultConfig() {
+        //设置默认配置
+        properties.setProperty("openai.model", "gpt-4");
+        properties.setProperty("openai.temperature", "0.2");
+        properties.setProperty("openai.timeout", "60");
 
+        ConsolePrinter.printWarning("使用默认配置，请创建配置文件设置 OpenAI API Key");
     }
 
+    private void validateRequiredConfig() {
+        if (getProperty("openai.api.key") == null) {
+            ConsolePrinter.printError("未设置 OpenAI API Key");
+            ConsolePrinter.printInfo("请在配置文件中设置: openai.api.key=your_api_key");
+        }
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
+    public String getProperty(String key, String defaultValue) {
+        return properties.getProperty(key, defaultValue);
+    }
+
+    public void setProperty(String key, String value) {
+        properties.setProperty(key, value);
+    }
 }
