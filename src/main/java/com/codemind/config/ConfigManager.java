@@ -45,13 +45,16 @@ public class ConfigManager {
                 }
             }
         }
-
         // 检查必要的配置
         validateRequiredConfig();
     }
 
+    private void validateRequiredConfig() {
 
-
-    public void loadConfig(String configPath) {
     }
+
+    private void createDefaultConfig() {
+
+    }
+
 }
