@@ -5,5 +5,5 @@ package com.codemind.cli;
  * @Date 2025/10/20 22:58
  * @Version 1.0
  */
-public class CodeMind {
+public class CodeMindCli {
 }
