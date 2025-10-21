@@ -1,6 +1,7 @@
 package com.codemind.cli;
 
 import com.codemind.config.ConfigManager;
+import lombok.Getter;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -27,21 +28,24 @@ public class CodeMindCli {
     )
     private String configPath;
 
+    @Getter
     @Option(
             names = {"--verbose", "-v"},
             description = "详细输出模式"
     )
     private boolean verbose;
 
+    @Getter
     private ConfigManager configManager;
 
-/**
+    /**
  * 执行命令行调用的核心方法
  * 该方法负责初始化配置管理器并加载配置文件
  * 如果没有提供子命令，则显示帮助信息
  * @return 返回状态码，0表示成功执行
  * @throws Exception 如果配置加载过程中发生错误
  */
+    //@Override
     public Integer call() throws Exception {
         // 初始化配置管理器
         configManager = ConfigManager.getInstance();
@@ -52,14 +56,6 @@ public class CodeMindCli {
         CommandLine.usage(this, System.out);
         // 返回执行状态码，0表示成功
         return 0;
-    }
-
-    public ConfigManager getConfigManager() {
-        return configManager;
-    }
-
-    public boolean isVerbose() {
-        return verbose;
     }
 
 /**
